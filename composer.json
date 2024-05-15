@@ -6,10 +6,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "firebase/php-jwt": "^6.10",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
-        "laravel/sanctum": "^3.2",
-        "laravel/tinker": "^2.8"
+        "laravel/sanctum": "^3.3",
+        "laravel/socialite": "^5.14",
+        "laravel/tinker": "^2.8",
+        "tymon/jwt-auth": "^2.1",
+        "vlucas/phpdotenv": "^5.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -64,5 +68,20 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.org",
+            "options": {
+                "ssl": {
+                    "verify_peer": "false"
+                }
+            }
+        },
+        {
+            "packagist": false
+        }
+    ]
 }
