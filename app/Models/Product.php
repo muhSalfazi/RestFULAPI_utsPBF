@@ -19,6 +19,12 @@ class Product extends Model
         'modified_by'
     ];
 
+    public function modifier()
+    {
+        return $this->belongsTo(User::class, 'modified_by');
+    }
+
+    //Relationship with User model for modified_by
     public function category()
     {
         return $this->belongsTo(Category::class);

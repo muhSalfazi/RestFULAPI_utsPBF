@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use Carbon\Carbon;
 class CategoryController extends Controller
 {
     public function index()
@@ -26,14 +26,15 @@ class CategoryController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        // Buat kategori baru
+        // Buat kategori baru tanpa mengatur updated_at
         $category = Category::create([
             'name' => $request->name,
+            'updated_at' => null
         ]);
 
         // Kembalikan respons sukses
         return response()->json([
-            'message' => 'Category Berhasil Di buat',
+            'message' => 'Category Berhasil Dibuat',
             'category' => $category
         ], 201);
     }
@@ -59,14 +60,17 @@ class CategoryController extends Controller
         }
 
         // Update nama kategori
-        $category->update($request->only('name'));
+        $category->update([
+            'name' => $request->name,
+            'updated_at' => Carbon::now(), // Menggunakan waktu saat ini
+        ]);
 
         // Kembalikan respons sukses
         return response()->json([
             'message' => 'Category Berhasil Diupdate',
+            'category' => $category
         ], 200);
     }
-
     public function destroy($id)
     {
         // Cari kategori berdasarkan ID

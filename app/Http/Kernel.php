@@ -43,7 +43,12 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+        'admin' => [
+            \App\Http\Middleware\AdminMiddleware::class,
+        ],
+
     ];
+    
 
     /**
      * The application's middleware aliases.
@@ -63,6 +68,6 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'jwt.auth' => \App\Http\Middleware\JwtMiddleware::class, 
+        'jwt.auth' => \App\Http\Middleware\JwtMiddleware::class,
     ];
 }
