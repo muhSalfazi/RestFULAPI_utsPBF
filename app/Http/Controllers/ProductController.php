@@ -1,13 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
 class ProductController extends Controller
 {
     public function index()
@@ -61,66 +62,91 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        // Get authenticated user
+        $user = Auth::user();
+
+        // Retrieve the product
         $product = Product::find($id);
+
+        // If product not found, return error response
         if (!$product) {
-            return response()->json(['message' => 'Product Tidak Tersedia'], 404);
+            return response()->json(['message' => 'Product not found'], 404);
         }
 
-        // Validasi hanya akan diterapkan untuk atribut-atribut yang ada dalam permintaan
+        // Define validation rules for all fields
         $validator = Validator::make($request->all(), [
             'name' => 'sometimes|string|max:255',
             'description' => 'sometimes|string',
             'price' => 'sometimes|integer',
-            'category_id' => 'sometimes|string',
+            'image' => 'sometimes|file|image',  
+            'category_id' => 'sometimes|string|max:255', 
             'expired_at' => 'sometimes|date',
+            'modified_by' => 'sometimes|string|max:255'  
         ]);
 
+        // Check if validation fails
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+            return response()->json($validator->errors())->setStatusCode(422);
         }
 
-        // Update updated_at menjadi waktu saat ini menggunakan Carbon
-        $product->updated_at = Carbon::now();
-
-        // Update atribut-atribut yang diberikan dalam permintaan
-        if ($request->has('name')) {
-            $product->name = $request->input('name');
-        }
-        if ($request->has('description')) {
-            $product->description = $request->input('description');
-        }
-        if ($request->has('price')) {
-            $product->price = $request->input('price');
-        }
+        // If request has 'category_id', update the product's category_id
         if ($request->has('category_id')) {
-            $category = Category::where('name', $request->input('category_id'))->first();
+            // Retrieve the category based on name
+            $category = Category::where('name', $request->category_id)->first();
             if (!$category) {
-                return response()->json(['message' => 'Category Tidak Tersedia'], 404);
+                return response()->json(['message' => 'Category tidak tersedia di dalam database'], 404);
             }
             $product->category_id = $category->id;
         }
-        if ($request->has('expired_at')) {
-            $product->expired_at = $request->input('expired_at');
+
+        // If request has 'name', update the product's name
+        if ($request->has('name')) {
+            $product->name = $request->name;
         }
 
-        // Mendapatkan email pengguna terautentikasi
-        $userEmail = Auth::user()->email;
+        // If request has 'description', update the product's description
+        if ($request->has('description')) {
+            $product->description = $request->description;
+        }
 
-        // Memperbarui modified_by dengan email pengguna yang terautentikasi
-        $product->modified_by = $userEmail;
+        // If request has 'price', update the product's price
+        if ($request->has('price')) {
+            $product->price = $request->price;
+        }
 
-        // Jika gambar baru diunggah, simpan jalur gambar yang baru
+        // If request has 'image', update the product's image
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('public/images');
-            $imagePath = Storage::url($path);
-            $product->image = $imagePath;
+            $product->image = Storage::url($path);
         }
 
-        // Simpan pembaruan ke dalam basis data
+        // If request has 'expired_at', update the product's expired_at
+        if ($request->has('expired_at')) {
+            $product->expired_at = $request->expired_at;
+        }
+
+        // Ensure user is authenticated before proceeding
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        // Retrieve user email
+        $userEmail = $user->email;
+
+        // Add user email as modified_by
+        $product->modified_by = $userEmail;
+
+        // Save the updated product
         $product->save();
 
-        return response()->json($product);
+        return response()->json([
+            'msg' => 'Data dengan id: ' . $id . ' berhasil diupdate',
+            'data' => $product
+        ], 200);
     }
+
+
+
 
 
     public function destroy($id)
