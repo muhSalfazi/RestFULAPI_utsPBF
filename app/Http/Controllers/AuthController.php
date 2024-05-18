@@ -44,7 +44,7 @@ class AuthController extends Controller
         $token = $this->jwt($user);
 
         return response()->json([
-            'message' => 'User registered successfully',
+            'message' => 'User Berhasil Terdaftar',
             'user' => $user,
             'access_token' => $token
         ], 201);
@@ -52,8 +52,6 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string',
@@ -63,9 +61,9 @@ class AuthController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->input('email'))->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->input('password'), $user->password)) {
             return response()->json(['message' => 'Invalid email or password'], 401);
         }
 
@@ -74,14 +72,14 @@ class AuthController extends Controller
         return response()->json(['access_token' => $token, 'token_type' => 'Bearer']);
     }
 
-    public function logout(Request $request)
-    {
-        // No need to handle logout for stateless JWT, just inform client to delete the token
-        return response()->json(['message' => 'Logged out successfully'], 200);
-    }
+    // public function logout(Request $request)
+    // {
+    //     // No need to handle logout for stateless JWT, just inform client to delete the token
+    //     return response()->json(['message' => 'Logged out successfully'], 200);
+    // }
 
-    public function me(Request $request)
-    {
-        return response()->json($request->auth);
-    }
+    // public function me(Request $request)
+    // {
+    //     return response()->json($request->auth);
+    // }
 }

@@ -14,18 +14,18 @@ return new class extends Migration {
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255)->nullable();
+            $table->string('name', 255)->nullable(false);
             $table->text('description');
-            $table->integer('price')->nullable();
+            $table->integer('price')->nullable(false);
             $table->string('image', 255);
-            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable(false);
 
             $table->foreign('category_id')->references('id')->on('categories')
                 ->onUpdate('no action')
                 ->onDelete('cascade');
 
             $table->date('expired_at')->nullable();
-            $table->string('modified_by', 255)->comment('email user')->nullable();
+            $table->string('modified_by', 255)->comment('email user')->nullable(false);
             $table->timestamps();
         });
 

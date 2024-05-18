@@ -78,10 +78,10 @@ class ProductController extends Controller
             'name' => 'sometimes|string|max:255',
             'description' => 'sometimes|string',
             'price' => 'sometimes|integer',
-            'image' => 'sometimes|file|image',  
-            'category_id' => 'sometimes|string|max:255', 
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048', // Updated image validation
+            'category_id' => 'sometimes|string|max:255',
             'expired_at' => 'sometimes|date',
-            'modified_by' => 'sometimes|string|max:255'  
+            'modified_by' => 'sometimes|string|max:255'
         ]);
 
         // Check if validation fails
@@ -116,8 +116,15 @@ class ProductController extends Controller
 
         // If request has 'image', update the product's image
         if ($request->hasFile('image')) {
+            // Store the new image
             $path = $request->file('image')->store('public/images');
-            $product->image = Storage::url($path);
+            $imagePath = Storage::url($path);
+            // Delete old image if exists
+            if ($product->image) {
+                Storage::delete(str_replace('/storage', 'public', $product->image));
+            }
+            // Assign new image path
+            $product->image = $imagePath;
         }
 
         // If request has 'expired_at', update the product's expired_at
@@ -144,6 +151,7 @@ class ProductController extends Controller
             'data' => $product
         ], 200);
     }
+
 
 
 
