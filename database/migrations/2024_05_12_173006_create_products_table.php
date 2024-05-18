@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->integer('price')->nullable(false);
             $table->string('image', 255);
             $table->unsignedBigInteger('category_id')->nullable(false);
-
+            // $table->string('google_id')->nullable()->unique();
             $table->foreign('category_id')->references('id')->on('categories')
                 ->onUpdate('no action')
                 ->onDelete('cascade');

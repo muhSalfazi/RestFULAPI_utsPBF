@@ -1,5 +1,7 @@
 <?php
 
+
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,8 +14,9 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name')->nullable(false);
             $table->string('email')->nullable(false)->unique();
-            $table->string('password')->nullable(false);
+            $table->string('password')->nullable();
             $table->enum('role', ['admin', 'user'])->default('user');
+            $table->string('google_id')->nullable();
             $table->timestamps();
         });
     }

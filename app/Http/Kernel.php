@@ -49,8 +49,8 @@ class Kernel extends HttpKernel
         ],
         'jwt.check' => [
             \App\Http\Middleware\CheckJWT::class,
-
         ],
+         'allow.google.token.request' => [\App\Http\Middleware\AllowGoogleTokenRequest::class] ,
 
     ];
     
