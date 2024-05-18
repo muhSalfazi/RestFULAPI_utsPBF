@@ -45,10 +45,10 @@ Route::middleware(['jwt.check', 'admin'])->group(function () {
 
 Route::middleware(['jwt.check'])->group(function () {
     // Routes untuk pengguna
-    Route::get('/user/products', [ProductController::class, 'index']);
-    Route::get('/user/products/{id}', [ProductController::class, 'show']);
-    Route::post('/user/products', [ProductController::class, 'store']);
-    Route::put('/user/products/{id}', [ProductController::class, 'update']);
-    Route::patch('/user/products/{id}', [ProductController::class, 'update']);
-    Route::delete('/user/products/{id}', [ProductController::class, 'destroy']);
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/products/{id}', [ProductController::class, 'show']);
+    Route::post('/products', [ProductController::class, 'store']);
+    Route::put('/products/{id}', [ProductController::class, 'update']);
+    Route::patch('/products/{id}', [ProductController::class, 'update']);
+    Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 });

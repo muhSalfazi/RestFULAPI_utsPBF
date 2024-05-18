@@ -12,8 +12,18 @@ use GuzzleHttp\Client;
 
 class GoogleAuthController extends Controller
 {
+    protected function jwt(User $user)
+    {
+        $payload = [
+            'iss' => "jwt-auth", // Issuer of the token
+            'sub' => $user->id, // Subject of the token
+            'iat' => time(), // Time when JWT was issued.
+            'exp' => time() + 60 * 60 // Expiration time
+        ];
 
-    
+        return JWT::encode($payload, env('JWT_SECRET'), 'HS256');
+    }
+
     public function redirect()
     {
         $parameters = [
@@ -72,7 +82,7 @@ class GoogleAuthController extends Controller
                         'name' => $google_user->getName(),
                         'email' => $google_user->getEmail(),
                         'google_id' => $google_user->getId(),
-                        'role' => 'user', // Assuming a default role of 'user'
+                        // Assuming a default role of 'user'
                     ]);
                 } else {
                     // Update the user's email if it was different
@@ -80,15 +90,7 @@ class GoogleAuthController extends Controller
                 }
             }
 
-            $payload = [
-                'id' => $user->id,
-                'name' => $user->name,
-                'role' => $user->role,
-                'iat' => Carbon::now()->timestamp,
-                'exp' => Carbon::now()->timestamp + 3600,
-            ];
-
-            $token = JWT::encode($payload, env('JWT_SECRET_KEY'), 'HS256');
+            $token = $this->jwt($user);
 
             Auth::login($user);
             return response()->json(['message' => 'User logged in successfully', 'user' => $user, 'bearer token' => $token], 200);
