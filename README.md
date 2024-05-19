@@ -28,10 +28,10 @@ Proyek ini dilisensikan di bawah [MIT License](LICENSE).
   <br>
 
   ## 📫 Kontak
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/muh.salfazi/)
+[![Email](https://img.shields.io/badge/Email-7289DA?style=for-the-badge&logo=email&logoColor=white)](mailto:if22.muhamadfauzi@mhs.ubpkarawang.ac.id)
+[![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://muhsalfazi-profile.netlify.app/)
 
-- **Email**: [if22.muhamadfauzi@mhs.ubpkarawang.ac.id](mailto:if22.muhamadfauzi@mhs.ubpkarawang.ac.id)
-- **Website Profile**: [muhsalfazi-profile.netlify.app](https://muhsalfazi-profile.netlify.app/)
-- **Instagram**: [muh.salfazi](https://www.instagram.com/muh.salfazi/)
 
 Link Proyek: [https://github.com/username/Nama_Projek.git](https://github.com/username/Nama_Projek.git)
 
