@@ -19,7 +19,6 @@
 
   <br>
 
-
   ## 📝 Lisensi
 
 Proyek ini dilisensikan di bawah [MIT License](LICENSE).
@@ -47,5 +46,3 @@ Berikut adalah daftar dependensi yang digunakan dalam proyek ini:
 - [vlucas/phpdotenv](https://github.com/vlucas/phpdotenv) - Loads environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.
 
 </div>
-
-
