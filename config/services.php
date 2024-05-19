@@ -33,7 +33,8 @@ return [
    'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'http://127.0.0.1:8000/api/oauth/call-back',
+        'redirect' => 'https://uts-salmanfauzi-1063.libranation.my.id/api/oauth/call-back',
+        // http://127.0.0.1:8000/api/oauth/call-back =>doamin hosting
    ]
 
 ];

@@ -28,7 +28,8 @@ class GoogleAuthController extends Controller
     {
         $parameters = [
             'client_id' => env('GOOGLE_CLIENT_ID'),
-            'redirect_uri' => 'http://127.0.0.1:8000/api/oauth/call-back',
+            'redirect_uri' => 'https://uts-salmanfauzi-1063.libranation.my.id/api/oauth/call-back',
+            // d
             'response_type' => 'code',
             'scope' => 'email profile',
             'access_type' => 'offline',
@@ -57,7 +58,8 @@ class GoogleAuthController extends Controller
                     'code' => $code,
                     'client_id' => env('GOOGLE_CLIENT_ID'),
                     'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-                    'redirect_uri' => 'http://127.0.0.1:8000/api/oauth/call-back',
+                    'redirect_uri' => 'https://uts-salmanfauzi-1063.libranation.my.id/api/oauth/call-back',
+                    // http://127.0.0.1:8000/api/oauth/call-back =>local
                     'grant_type' => 'authorization_code',
                     'access_type' => 'offline',
                 ],

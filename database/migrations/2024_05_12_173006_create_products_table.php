@@ -25,7 +25,7 @@ return new class extends Migration {
                 ->onDelete('cascade');
 
             $table->date('expired_at')->nullable();
-            $table->string('modified_by', 255)->comment('email user')->nullable(false);
+            $table->string('modified_by', 255)->comment('email user')->nullable();
             $table->timestamps();
         });
 
