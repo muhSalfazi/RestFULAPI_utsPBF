@@ -32,9 +32,6 @@ Proyek ini dilisensikan di bawah [MIT License](LICENSE).
 [![Email](https://img.shields.io/badge/Email-7289DA?style=for-the-badge&logo=email&logoColor=white)](mailto:if22.muhamadfauzi@mhs.ubpkarawang.ac.id)
 [![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://muhsalfazi-profile.netlify.app/)
 
-
-Link Proyek: [https://github.com/username/Nama_Projek.git](https://github.com/username/Nama_Projek.git)
-
   <br>
 
   ## 📦 Daftar Dependensi
