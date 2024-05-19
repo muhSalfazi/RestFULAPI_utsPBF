@@ -1,7 +1,7 @@
 <h1 align="center">UTS-PBF-1063 💻</h1>
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Roboto&size=30&color=FFFFFF&center=true&vCenter=true&width=500&height=70&lines=Untuk+Pengumpulan+UTS+Matkul+PemogramanWebFramework" alt="Typing SVG">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Roboto&size=30&color=FFFFFF&center=true&vCenter=true&width=500&height=70&lines=Untuk+Pengumpulan+UTS+PemogramanWebFramework" alt="Typing SVG">
 </p>
 
 <div align="center" style="margin: 20px; padding: 20px; border-radius: 15px; border: 2px solid #333; color: white; background-color: transparent; background-image: url('https://cdn.pixabay.com/photo/2016/12/26/17/28/background-1932466_960_720.png'); background-size: cover; background-blend-mode: multiply; animation: gradient-bg 15s ease infinite;">
