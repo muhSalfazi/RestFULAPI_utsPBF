@@ -19,17 +19,6 @@
 
   <br>
 
-  ## 🛠️ Penggunaan
-
-Deskripsi tentang cara menggunakan atau menjalankan proyekmu di sini.
-
-  <br>
-
-  ## 🤝 Kontribusi
-
-Jika Anda ingin berkontribusi pada proyek ini, silakan buka [Panduan Kontribusi](CONTRIBUTING.md).
-
-  <br>
 
   ## 📝 Lisensi
 
@@ -39,7 +28,9 @@ Proyek ini dilisensikan di bawah [MIT License](LICENSE).
 
   ## 📫 Kontak
 
-Nama Pengembang - [Email Pengembang] - [Situs Web Pengembang] - [@Akun_Sosial_Media]
+- **Email**: [if22.muhamadfauzi@mhs.ubpkarawang.ac.id](mailto:if22.muhamadfauzi@mhs.ubpkarawang.ac.id)
+- **Website Profile**: [muhsalfazi-profile.netlify.app](https://muhsalfazi-profile.netlify.app/)
+- **Instagram**: [muh.salfazi](https://www.instagram.com/muh.salfazi/)
 
 Link Proyek: [https://github.com/username/Nama_Projek.git](https://github.com/username/Nama_Projek.git)
 
