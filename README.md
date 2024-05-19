@@ -6,7 +6,7 @@
 
 <div align="center" style="margin: 20px; padding: 20px; border-radius: 15px; border: 2px solid #333; color: white; background-color: transparent; background-image: url('https://cdn.pixabay.com/photo/2016/12/26/17/28/background-1932466_960_720.png'); background-size: cover; background-blend-mode: multiply; animation: gradient-bg 15s ease infinite;">
 
-  ## Instalasi
+  ## 🚀 Instalasi
 
 1. Clone repositori ini: `git clone https://github.com/username/Nama_Projek.git`
 2. Masuk ke direktori proyek: `cd Nama_Projek`
@@ -19,25 +19,25 @@
 
   <br>
 
-  ## Penggunaan
+  ## 🛠️ Penggunaan
 
 Deskripsi tentang cara menggunakan atau menjalankan proyekmu di sini.
 
   <br>
 
-  ## Kontribusi
+  ## 🤝 Kontribusi
 
 Jika Anda ingin berkontribusi pada proyek ini, silakan buka [Panduan Kontribusi](CONTRIBUTING.md).
 
   <br>
 
-  ## Lisensi
+  ## 📝 Lisensi
 
 Proyek ini dilisensikan di bawah [MIT License](LICENSE).
 
   <br>
 
-  ## Kontak
+  ## 📫 Kontak
 
 Nama Pengembang - [Email Pengembang] - [Situs Web Pengembang] - [@Akun_Sosial_Media]
 
@@ -45,7 +45,7 @@ Link Proyek: [https://github.com/username/Nama_Projek.git](https://github.com/us
 
   <br>
 
-  ## Daftar Dependensi
+  ## 📦 Daftar Dependensi
 
 Berikut adalah daftar dependensi yang digunakan dalam proyek ini:
 
@@ -57,10 +57,4 @@ Berikut adalah daftar dependensi yang digunakan dalam proyek ini:
 
 </div>
 
-<style>
-  @keyframes gradient-bg {
-    0% {background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);}
-    50% {background: linear-gradient(-45deg, #23d5ab, #23a6d5, #e73c7e, #ee7752);}
-    100% {background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);}
-  }
-</style>
+
