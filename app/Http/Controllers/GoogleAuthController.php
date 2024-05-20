@@ -15,10 +15,10 @@ class GoogleAuthController extends Controller
     protected function jwt(User $user)
     {
         $payload = [
-            'iss' => "jwt-auth", // Issuer of the token
-            'sub' => $user->id, // Subject of the token
-            'iat' => time(), // Time when JWT was issued.
-            'exp' => time() + 60 * 60 // Expiration time
+            'iss' => "jwt-auth", 
+            'sub' => $user->id, 
+            'iat' => time(), 
+            'exp' => time() + 60 * 60 
         ];
 
         return JWT::encode($payload, env('JWT_SECRET'), 'HS256');
@@ -35,7 +35,7 @@ class GoogleAuthController extends Controller
             'access_type' => 'offline',
             'include_granted_scopes' => 'true',
             'state' => 'state_parameter_passthrough_value',
-            'prompt' => 'consent' // Ensure the consent screen is shown
+            'prompt' => 'consent' 
         ];
 
         $authUrl = 'https://accounts.google.com/o/oauth2/v2/auth?' . http_build_query($parameters);
@@ -47,7 +47,7 @@ class GoogleAuthController extends Controller
         $code = $request->input('code');
 
         if (!$code) {
-            return response()->json(['error' => 'Authorization code not found'], 400);
+            return response()->json(['error' => 'Kode otorisasi tidak ditemukan'], 400);
         }
 
         try {
@@ -68,18 +68,18 @@ class GoogleAuthController extends Controller
             $tokenData = json_decode($response->getBody(), true);
             $accessToken = $tokenData['access_token'];
 
-            // Use the access token to get user information
+            //Gunakan token akses untuk mendapatkan informasi pengguna
             $google_user = Socialite::driver('google')->stateless()->userFromToken($accessToken);
 
-            // Check if a user with the same email already exists
+            // Periksa apakah pengguna dengan email yang sama sudah ada
             $user = User::where('email', $google_user->getEmail())->first();
 
             if (!$user) {
-                // Check if a user with the same Google ID already exists
+                // Periksa apakah pengguna dengan ID Google yang sama sudah ada
                 $user = User::where('google_id', $google_user->getId())->first();
 
                 if (!$user) {
-                    // Create a new user if no matching email or Google ID is found
+                    // Buat pengguna baru jika tidak ditemukan email atau ID Google yang cocok
                     $user = User::create([
                         'name' => $google_user->getName(),
                         'email' => $google_user->getEmail(),
@@ -87,7 +87,7 @@ class GoogleAuthController extends Controller
                         // Assuming a default role of 'user'
                     ]);
                 } else {
-                    // Update the user's email if it was different
+                    // Perbarui email pengguna jika berbeda
                     $user->update(['email' => $google_user->getEmail()]);
                 }
             }
@@ -95,10 +95,10 @@ class GoogleAuthController extends Controller
             $token = $this->jwt($user);
 
             Auth::login($user);
-            return response()->json(['message' => 'User logged in successfully', 'user' => $user, 'bearer token' => $token], 200);
+            return response()->json(['message' => 'Pengguna berhasil login', 'user' => $user, 'bearer token' => $token], 200);
 
         } catch (\Throwable $th) {
-            return response()->json(['error' => 'Something went wrong', 'details' => $th->getMessage()], 424);
+            return response()->json(['error' => 'Ada yang salah', 'details' => $th->getMessage()], 424);
         }
     }
 }
