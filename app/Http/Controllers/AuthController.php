@@ -14,10 +14,10 @@ class AuthController extends Controller
     protected function jwt(User $user)
     {
         $payload = [
-            'iss' => "jwt-auth", // Issuer of the token
-            'sub' => $user->id, // Subject of the token
-            'iat' => time(), // Time when JWT was issued.
-            'exp' => time() + 60 * 60 // Expiration time
+            'iss' => "jwt-auth",
+            'sub' => $user->id, 
+            'iat' => time(), 
+            'exp' => time() + 60 * 60 
         ];
 
         return JWT::encode($payload, env('JWT_SECRET'), 'HS256');
@@ -39,13 +39,19 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role ?? 'user', // Assigning role, default to 'user'
         ]);
 
         $token = $this->jwt($user);
 
         return response()->json([
             'message' => 'User Berhasil Terdaftar',
-            'user' => $user,
+            'deksripsi' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role
+            ],
             'access_token' => $token
         ], 201);
     }
@@ -69,17 +75,16 @@ class AuthController extends Controller
 
         $token = $this->jwt($user);
 
-        return response()->json(['access_token' => $token, 'token_type' => 'Bearer']);
+        return response()->json([
+            'message' => 'login berhasil',
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'Deksripsi' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role
+            ]
+        ]);
     }
-
-    // public function logout(Request $request)
-    // {
-    //     // No need to handle logout for stateless JWT, just inform client to delete the token
-    //     return response()->json(['message' => 'Logged out successfully'], 200);
-    // }
-
-    // public function me(Request $request)
-    // {
-    //     return response()->json($request->auth);
-    // }
 }
